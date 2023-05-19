@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Directory</title>
+  <style>
+    /* Custom styles */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #filter {
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 200px;
+      margin-bottom: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Employee Directory</h1>
+  <div id="filter">
+    <label for="name">Search by Name:</label>
+    <input type="text" id="name" onkeyup="filterByName()" placeholder="Enter a name">
+    <br>
+    <label for="designation">Filter by Designation/Skills:</label>
+    <input type="text" id="designation" onkeyup="filterByDesignation()" placeholder="Enter a designation/skill">
+  </div>
+  <table id="employee-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Skills</th>
+        <th>Projects</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mr. A</td>
+        <td>Senior Developer</td>
+        <td>JavaScript, Python, Java</td>
+        <td>
+          <ul>
+            <li>Project A</li>
+            <li>Project B</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Mr. B</td>
+        <td>null</td>
+        <td>HTML, CSS, Photoshop</td>
+        <td>
+          <ul>
+            <li>Project C</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>null</td>
+        <td>QA Engineer</td>
+        <td>Manual Testing, undefined, SQL</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>undefined</td>
+        <td>Mr. D</td>
+        <td>Project Manager</td>
+        <td>null</td>
+        <td>
+          <ul>
+            <li>Project D</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Mr. E</td>
+        <td>Senior Developer</td>
+        <td>JavaScript, Python, Java</td>
+        <td>
+          <ul>
+            <li>Project E</li>
+            <li>Project F</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Mr. F</td>
+        <td>null</td>
+        <td>HTML, CSS, Photoshop</td>
+        <td>
+          <ul>
+            <li>Project G</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>null</td>
+        <td>QA Engineer</td>
+        <td>Manual Testing, undefined, SQL</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Mr. H</td>
+        <td>Project Manager</td>
+        <td>null</td>
+        <td>
+          <ul>
+            <li>Project J</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Mr. I</td>
+        <td>Senior Developer</td>
+        <td>JavaScript, Python, Java</td>
+        <td>
+          <ul>
+            <li>Project I</li>
+            <li>Project J</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Filter employees by name
+    function filterByName() {
+      var input = document.getElementById("name").value.toLowerCase();
+      var table = document.getElementById("employee-table");
+      var rows = table.getElementsByTagName("tr");
+
+      for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip the table header
+        var nameColumn = rows[i].getElementsByTagName("td")[1];
+        if (nameColumn) {
+          var name = nameColumn.textContent.toLowerCase();
+          if (name.includes(input)) {
+            rows[i].style.display = ""; // Show the row
+          } else {
+            rows[i].style.display = "none"; // Hide the row
+          }
+        }
+      }
+    }
+
+    // Filter employees by designation/skills
+    function filterByDesignation() {
+      var input = document.getElementById("designation").value.toLowerCase();
+      var table = document.getElementById("employee-table");
+      var rows = table.getElementsByTagName("tr");
+
+      for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip the table header
+        var designationColumn = rows[i].getElementsByTagName("td")[2];
+        var skillsColumn = rows[i].getElementsByTagName("td")[3];
+        if (designationColumn && skillsColumn) {
+          var designation = designationColumn.textContent.toLowerCase();
+          var skills = skillsColumn.textContent.toLowerCase();
+          if (designation.includes(input) || skills.includes(input)) {
+            rows[i].style.display = ""; // Show the row
+          } else {
+            rows[i].style.display = "none"; // Hide the row
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
+
